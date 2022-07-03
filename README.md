@@ -82,13 +82,27 @@ v3.05 版本，更加好用了。新年快乐！<br />
 </strong><br />
 使用 root 用户输入下面命令安装或卸载</p>
 
+     # 现在请使用下面这条命令安装
+     
 <pre><code>bash &lt;(curl -s -L https://git.io/v2ray.sh)
 </code></pre>
 
 <div class="post-ad">
     
-    
-    
+    安装完成之后需要对端口进行放行，参考
+``` 
+     # firewalld放行端口（适用于CentOS7/8）
+firewall-cmd --permanent --add-port=23581/tcp # 23581改成你配置文件中的端口号
+firewall-cmd --reload
+# ufw放行端口（适用于ubuntu）
+ufw allow 23581/tcp # 23581改成你的端口号
+# iptables 放行端口（适用于CentOS 6/7）
+iptables -I INPUT -p tcp --dport 23581 -j ACCEPT
+# 设置开机启动
+systemctl enable v2ray
+# 运行v2ray
+systemctl start v2ray
+   ```
 </div>
 
 
